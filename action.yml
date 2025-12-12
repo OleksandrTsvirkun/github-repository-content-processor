@@ -7,10 +7,14 @@ branding:
   color: 'green'
 
 inputs:
-  github-token:
+  token:
     description: 'GitHub token for API access'
     required: true
     default: ${{ github.token }}
+  use-check-runs:
+    description: 'Enable GitHub Check Runs API (disable for local testing)'
+    required: false
+    default: 'false'
 
 runs:
   using: 'node20'

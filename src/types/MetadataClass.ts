@@ -3,13 +3,13 @@ import {
   ChapterMetadata,
   DirectoryMetadata,
   LocaleMetadata,
-  MetadataType,
+  Metadata,
 } from "./metadata";
 
 /**
  * Base class for Metadata with common functionality.
  */
-abstract class BaseMetadata<T extends MetadataType> {
+abstract class BaseMetadata<T extends Metadata> {
   constructor(protected data: T) {}
 
   /**
@@ -80,9 +80,23 @@ abstract class BaseMetadata<T extends MetadataType> {
   }
 
   /**
+   * Get SHA hash of the file.
+   */
+  get sha(): string {
+    return this.data.sha;
+  }
+
+  /**
+   * Get file size in bytes.
+   */
+  get size(): number {
+    return this.data.size;
+  }
+
+  /**
    * Get type.
    */
-  abstract get type(): MetadataType["type"];
+  abstract get type(): Metadata["type"];
 
   /**
    * Get slug.

@@ -3,8 +3,14 @@ import * as core from '@actions/core';
 import {
   ValidationError,
   ValidationErrorCode,
-  ValidationResult
+  ValidationResult,
+  ValidationStats
 } from "../validations/core/types";
+import ValidationPipeline from "../validations/validators/ValidationPipeline";
+import ContentPath from "../validations/domain/ContentPath";
+import type FileStats from "../validations/domain/FileStats";
+import ArticleElement from "../validations/elements/ArticleElement";
+import RepositoryElement from "../validations/elements/RepositoryElement";
 
 export interface ContentProcessingResult {
   totalFiles: number;
@@ -149,50 +155,49 @@ export async function processSpecificFiles(
   return result;
 }
 
-async function validateFileContent(
+export async function validateFileContent(
   fileInfo: FileInfo
 ): Promise<ValidationResult> {
   try {
-    // TODO: Implement actual validation using validation pipeline
-    // For now, return basic validation result
-    const errors: ValidationError[] = [];
-
-    // Basic checks
-    if (!fileInfo.content || fileInfo.content.trim().length === 0) {
-      errors.push({
-        message: "File content is empty",
-        path: fileInfo.path,
-        start: { line: 1, column: 1, offset: 0 },
-        severity: "error" as const,
-        code: ValidationErrorCode.VALIDATION_ERROR,
-      });
-    }
-
-    if (!fileInfo.frontmatter || Object.keys(fileInfo.frontmatter).length === 0) {
-      errors.push({
-        message: "Missing frontmatter",
-        path: fileInfo.path,
-        start: { line: 1, column: 1, offset: 0 },
-        severity: "error" as const,
-        code: ValidationErrorCode.MISSING_REQUIRED_FIELD,
-      });
-    }
-
-    if (errors.length > 0) {
-      core.warning(`Validation failed for ${fileInfo.path}: ${errors.length} errors`);
-    }
-
-    return {
-      errors,
-      warnings: [],
-      infos: [],
-      stats: {
-        checked: { locales: 0, chapters: 0, directories: 0, articles: 1 },
-        generated: { locales: 0, chapters: 0, directories: 0, articles: 0 },
-        ignored: { locales: 0, chapters: 0, directories: 0, articles: 0 },
-        modified: { locales: 0, chapters: 0, directories: 0, articles: 0 },
-      },
+    // Parse path to create ContentPath
+    const contentPath = ContentPath.parse(fileInfo.path);
+    
+    // Create FileStats object
+    const stats: FileStats = {
+      createdAt: new Date(),
+      updatedAt: new Date(),
+      size: fileInfo.content.length
     };
+    
+    // Validate frontmatter has required fields for ArticleFrontMatter
+    const frontmatter = fileInfo.frontmatter as any;
+    if (!frontmatter.type || !frontmatter.id || !frontmatter.title) {
+      throw new Error('Missing required frontmatter fields: type, id, or title');
+    }
+    
+    // Create element based on file type
+    // For now, treat all as articles - you can enhance this logic
+    const element = new ArticleElement(
+      contentPath,
+      frontmatter,
+      stats,
+      null as any // Parent can be null for standalone validation
+    );
+    
+    // Create validation pipeline
+    const pipeline = new ValidationPipeline({
+      enabledValidators: {
+        frontmatter: true,
+        fileName: true,
+        hierarchy: false, // Disable for single file validation
+        duplicateId: false, // Disable for single file validation
+      },
+    });
+    
+    // Validate the element
+    const result = pipeline.validate(element);
+    
+    return result;
   } catch (error) {
     core.error(`Validation error for ${fileInfo.path}: ${error}`);
     return {
