@@ -38,6 +38,4 @@ jobs:
       - name: Run content validation
         uses: ./
         with:
-          github-token: ${{ secrets.GITHUB_TOKEN }}
-          # For private repositories, use PAT instead:
-          # github-token: ${{ secrets.PAT_TOKEN }}
+          token: ${{ secrets.GITHUB_TOKEN }}
