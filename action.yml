@@ -1,0 +1,17 @@
+name: 'Repository Content Validator'
+description: 'Validates markdown content in GitHub repositories with frontmatter and hierarchy checks'
+author: 'Oleksandr Tsvirkun'
+
+branding:
+  icon: 'check-circle'
+  color: 'green'
+
+inputs:
+  github-token:
+    description: 'GitHub token for API access'
+    required: true
+    default: ${{ github.token }}
+
+runs:
+  using: 'node20'
+  main: 'dist/index.js'
