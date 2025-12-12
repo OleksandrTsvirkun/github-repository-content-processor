@@ -1,16 +1,12 @@
-import { defineConfig } from 'tsup';
+import { defineConfig, Options } from 'tsup';
 
-export default defineConfig({
+const defaultConfig: Options = {
   platform: "node",
   entry: ["src/index.ts"],
+  target: "node20",
   outDir: "dist",
-  format: ['esm'],
   sourcemap: true,
   clean: true,
-  bundle: true,
-  minify: false,
-  target: "node20",
-  dts: false,
   noExternal: [
     '@actions/core',
     '@actions/github',
@@ -18,4 +14,16 @@ export default defineConfig({
     'gray-matter',
     'ulid'
   ],
-});
+}
+
+export default defineConfig([{
+  ...defaultConfig,
+  format: ['esm'],
+  dts: true,
+  outExtension: () => ({ js: '.mjs' })
+},
+{
+  ...defaultConfig,
+  format: ['cjs'],
+  outExtension: () => ({ js: '.cjs' })
+}]);

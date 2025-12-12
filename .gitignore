@@ -5,7 +5,7 @@ appsettings.json
 local.settings.json
 
 # Build outputs
-dist
+# dist
 *.js
 *.js.map
 

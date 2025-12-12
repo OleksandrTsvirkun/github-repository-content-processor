@@ -1,19 +1,14 @@
+"use strict";
 var __create = Object.create;
 var __defProp = Object.defineProperty;
 var __getOwnPropDesc = Object.getOwnPropertyDescriptor;
 var __getOwnPropNames = Object.getOwnPropertyNames;
 var __getProtoOf = Object.getPrototypeOf;
 var __hasOwnProp = Object.prototype.hasOwnProperty;
-var __require = /* @__PURE__ */ ((x) => typeof require !== "undefined" ? require : typeof Proxy !== "undefined" ? new Proxy(x, {
-  get: (a, b) => (typeof require !== "undefined" ? require : a)[b]
-}) : x)(function(x) {
-  if (typeof require !== "undefined") return require.apply(this, arguments);
-  throw Error('Dynamic require of "' + x + '" is not supported');
-});
 var __esm = (fn, res) => function __init() {
   return fn && (res = (0, fn[__getOwnPropNames(fn)[0]])(fn = 0)), res;
 };
-var __commonJS = (cb, mod) => function __require2() {
+var __commonJS = (cb, mod) => function __require() {
   return mod || (0, cb[__getOwnPropNames(cb)[0]])((mod = { exports: {} }).exports, mod), mod.exports;
 };
 var __export = (target, all) => {
@@ -103,7 +98,7 @@ var require_command = __commonJS({
     };
     Object.defineProperty(exports2, "__esModule", { value: true });
     exports2.issue = exports2.issueCommand = void 0;
-    var os = __importStar(__require("os"));
+    var os = __importStar(require("os"));
     var utils_1 = require_utils();
     function issueCommand(command, properties, message) {
       const cmd = new Command(command, properties, message);
@@ -189,9 +184,9 @@ var require_file_command = __commonJS({
     };
     Object.defineProperty(exports2, "__esModule", { value: true });
     exports2.prepareKeyValueMessage = exports2.issueFileCommand = void 0;
-    var crypto2 = __importStar(__require("crypto"));
-    var fs5 = __importStar(__require("fs"));
-    var os = __importStar(__require("os"));
+    var crypto2 = __importStar(require("crypto"));
+    var fs5 = __importStar(require("fs"));
+    var os = __importStar(require("os"));
     var utils_1 = require_utils();
     function issueFileCommand(command, message) {
       const filePath = process.env[`GITHUB_${command}`];
@@ -307,13 +302,13 @@ var require_proxy = __commonJS({
 var require_tunnel = __commonJS({
   "node_modules/tunnel/lib/tunnel.js"(exports2) {
     "use strict";
-    var net = __require("net");
-    var tls = __require("tls");
-    var http = __require("http");
-    var https = __require("https");
-    var events = __require("events");
-    var assert = __require("assert");
-    var util = __require("util");
+    var net = require("net");
+    var tls = require("tls");
+    var http = require("http");
+    var https = require("https");
+    var events = require("events");
+    var assert = require("assert");
+    var util = require("util");
     exports2.httpOverHttp = httpOverHttp;
     exports2.httpsOverHttp = httpsOverHttp;
     exports2.httpOverHttps = httpOverHttps;
@@ -945,15 +940,15 @@ var require_constants = __commonJS({
 var require_util = __commonJS({
   "node_modules/undici/lib/core/util.js"(exports2, module2) {
     "use strict";
-    var assert = __require("assert");
+    var assert = require("assert");
     var { kDestroyed, kBodyUsed } = require_symbols();
-    var { IncomingMessage } = __require("http");
-    var stream = __require("stream");
-    var net = __require("net");
+    var { IncomingMessage } = require("http");
+    var stream = require("stream");
+    var net = require("net");
     var { InvalidArgumentError } = require_errors();
-    var { Blob: Blob2 } = __require("buffer");
-    var nodeUtil = __require("util");
-    var { stringify } = __require("querystring");
+    var { Blob: Blob2 } = require("buffer");
+    var nodeUtil = require("util");
+    var { stringify } = require("querystring");
     var { headerNameLowerCasedRecord } = require_constants();
     var [nodeMajor, nodeMinor] = process.versions.node.split(".").map((v) => Number(v));
     function nop() {
@@ -1210,7 +1205,7 @@ var require_util = __commonJS({
     var ReadableStream;
     function ReadableStreamFrom(iterable) {
       if (!ReadableStream) {
-        ReadableStream = __require("stream/web").ReadableStream;
+        ReadableStream = require("stream/web").ReadableStream;
       }
       if (ReadableStream.from) {
         return ReadableStream.from(convertIterableToBuffer(iterable));
@@ -1411,8 +1406,8 @@ var require_timers = __commonJS({
 var require_sbmh = __commonJS({
   "node_modules/@fastify/busboy/deps/streamsearch/sbmh.js"(exports2, module2) {
     "use strict";
-    var EventEmitter = __require("events").EventEmitter;
-    var inherits = __require("util").inherits;
+    var EventEmitter = require("events").EventEmitter;
+    var inherits = require("util").inherits;
     function SBMH(needle) {
       if (typeof needle === "string") {
         needle = Buffer.from(needle);
@@ -1548,8 +1543,8 @@ var require_sbmh = __commonJS({
 var require_PartStream = __commonJS({
   "node_modules/@fastify/busboy/deps/dicer/lib/PartStream.js"(exports2, module2) {
     "use strict";
-    var inherits = __require("util").inherits;
-    var ReadableStream = __require("stream").Readable;
+    var inherits = require("util").inherits;
+    var ReadableStream = require("stream").Readable;
     function PartStream(opts) {
       ReadableStream.call(this, opts);
     }
@@ -1580,8 +1575,8 @@ var require_getLimit = __commonJS({
 var require_HeaderParser = __commonJS({
   "node_modules/@fastify/busboy/deps/dicer/lib/HeaderParser.js"(exports2, module2) {
     "use strict";
-    var EventEmitter = __require("events").EventEmitter;
-    var inherits = __require("util").inherits;
+    var EventEmitter = require("events").EventEmitter;
+    var inherits = require("util").inherits;
     var getLimit = require_getLimit();
     var StreamSearch = require_sbmh();
     var B_DCRLF = Buffer.from("\r\n\r\n");
@@ -1680,8 +1675,8 @@ var require_HeaderParser = __commonJS({
 var require_Dicer = __commonJS({
   "node_modules/@fastify/busboy/deps/dicer/lib/Dicer.js"(exports2, module2) {
     "use strict";
-    var WritableStream = __require("stream").Writable;
-    var inherits = __require("util").inherits;
+    var WritableStream = require("stream").Writable;
+    var inherits = require("util").inherits;
     var StreamSearch = require_sbmh();
     var PartStream = require_PartStream();
     var HeaderParser = require_HeaderParser();
@@ -2649,8 +2644,8 @@ var require_basename = __commonJS({
 var require_multipart = __commonJS({
   "node_modules/@fastify/busboy/lib/types/multipart.js"(exports2, module2) {
     "use strict";
-    var { Readable } = __require("stream");
-    var { inherits } = __require("util");
+    var { Readable } = require("stream");
+    var { inherits } = require("util");
     var Dicer = require_Dicer();
     var parseParams = require_parseParams();
     var decodeText = require_decodeText();
@@ -3323,8 +3318,8 @@ var require_urlencoded = __commonJS({
 var require_main = __commonJS({
   "node_modules/@fastify/busboy/lib/main.js"(exports2, module2) {
     "use strict";
-    var WritableStream = __require("stream").Writable;
-    var { inherits } = __require("util");
+    var WritableStream = require("stream").Writable;
+    var { inherits } = require("util");
     var Dicer = require_Dicer();
     var MultipartParser = require_multipart();
     var UrlencodedParser = require_urlencoded();
@@ -3402,7 +3397,7 @@ var require_main = __commonJS({
 var require_constants2 = __commonJS({
   "node_modules/undici/lib/fetch/constants.js"(exports2, module2) {
     "use strict";
-    var { MessageChannel, receiveMessageOnPort } = __require("worker_threads");
+    var { MessageChannel, receiveMessageOnPort } = require("worker_threads");
     var corsSafeListedMethods = ["GET", "HEAD", "POST"];
     var corsSafeListedMethodsSet = new Set(corsSafeListedMethods);
     var nullBodyStatus = [101, 204, 205, 304];
@@ -3639,14 +3634,14 @@ var require_util2 = __commonJS({
     "use strict";
     var { redirectStatusSet, referrerPolicySet: referrerPolicyTokens, badPortsSet } = require_constants2();
     var { getGlobalOrigin } = require_global();
-    var { performance: performance2 } = __require("perf_hooks");
+    var { performance: performance2 } = require("perf_hooks");
     var { isBlobLike, toUSVString, ReadableStreamFrom } = require_util();
-    var assert = __require("assert");
-    var { isUint8Array } = __require("util/types");
+    var assert = require("assert");
+    var { isUint8Array } = require("util/types");
     var supportedHashes = [];
     var crypto2;
     try {
-      crypto2 = __require("crypto");
+      crypto2 = require("crypto");
       const possibleRelevantHashes = ["sha256", "sha384", "sha512"];
       supportedHashes = crypto2.getHashes().filter((hash) => possibleRelevantHashes.includes(hash));
     } catch {
@@ -4140,7 +4135,7 @@ var require_util2 = __commonJS({
     var ReadableStream = globalThis.ReadableStream;
     function isReadableStreamLike(stream) {
       if (!ReadableStream) {
-        ReadableStream = __require("stream/web").ReadableStream;
+        ReadableStream = require("stream/web").ReadableStream;
       }
       return stream instanceof ReadableStream || stream[Symbol.toStringTag] === "ReadableStream" && typeof stream.tee === "function";
     }
@@ -4267,7 +4262,7 @@ var require_symbols2 = __commonJS({
 var require_webidl = __commonJS({
   "node_modules/undici/lib/fetch/webidl.js"(exports2, module2) {
     "use strict";
-    var { types } = __require("util");
+    var { types } = require("util");
     var { hasOwn, toUSVString } = require_util2();
     var webidl = {};
     webidl.converters = {};
@@ -4636,8 +4631,8 @@ var require_webidl = __commonJS({
 var require_dataURL = __commonJS({
   "node_modules/undici/lib/fetch/dataURL.js"(exports2, module2) {
     "use strict";
-    var assert = __require("assert");
-    var { atob: atob2 } = __require("buffer");
+    var assert = require("assert");
+    var { atob: atob2 } = require("buffer");
     var { isomorphicDecode } = require_util2();
     var encoder = new TextEncoder();
     var HTTP_TOKEN_CODEPOINTS = /^[!#$%&'*+-.^_|~A-Za-z0-9]+$/;
@@ -4922,8 +4917,8 @@ var require_dataURL = __commonJS({
 var require_file = __commonJS({
   "node_modules/undici/lib/fetch/file.js"(exports2, module2) {
     "use strict";
-    var { Blob: Blob2, File: NativeFile } = __require("buffer");
-    var { types } = __require("util");
+    var { Blob: Blob2, File: NativeFile } = require("buffer");
+    var { types } = require("util");
     var { kState } = require_symbols2();
     var { isBlobLike } = require_util2();
     var { webidl } = require_webidl();
@@ -5112,7 +5107,7 @@ var require_formdata = __commonJS({
     var { kState } = require_symbols2();
     var { File: UndiciFile, FileLike, isFileLike } = require_file();
     var { webidl } = require_webidl();
-    var { Blob: Blob2, File: NativeFile } = __require("buffer");
+    var { Blob: Blob2, File: NativeFile } = require("buffer");
     var File = NativeFile ?? UndiciFile;
     var FormData = class _FormData {
       constructor(form) {
@@ -5278,16 +5273,16 @@ var require_body = __commonJS({
     var { kState } = require_symbols2();
     var { webidl } = require_webidl();
     var { DOMException: DOMException2, structuredClone } = require_constants2();
-    var { Blob: Blob2, File: NativeFile } = __require("buffer");
+    var { Blob: Blob2, File: NativeFile } = require("buffer");
     var { kBodyUsed } = require_symbols();
-    var assert = __require("assert");
+    var assert = require("assert");
     var { isErrored } = require_util();
-    var { isUint8Array, isArrayBuffer } = __require("util/types");
+    var { isUint8Array, isArrayBuffer } = require("util/types");
     var { File: UndiciFile } = require_file();
     var { parseMIMEType, serializeAMimeType } = require_dataURL();
     var random;
     try {
-      const crypto2 = __require("crypto");
+      const crypto2 = require("crypto");
       random = (max) => crypto2.randomInt(0, max);
     } catch {
       random = (max) => Math.floor(Math.random(max));
@@ -5298,7 +5293,7 @@ var require_body = __commonJS({
     var textDecoder = new TextDecoder();
     function extractBody(object, keepalive = false) {
       if (!ReadableStream) {
-        ReadableStream = __require("stream/web").ReadableStream;
+        ReadableStream = require("stream/web").ReadableStream;
       }
       let stream = null;
       if (object instanceof ReadableStream) {
@@ -5431,7 +5426,7 @@ Content-Type: ${value.type || "application/octet-stream"}\r
     }
     function safelyExtractBody(object, keepalive = false) {
       if (!ReadableStream) {
-        ReadableStream = __require("stream/web").ReadableStream;
+        ReadableStream = require("stream/web").ReadableStream;
       }
       if (object instanceof ReadableStream) {
         assert(!util.isDisturbed(object), "The body has already been consumed.");
@@ -5646,7 +5641,7 @@ var require_request = __commonJS({
       InvalidArgumentError,
       NotSupportedError
     } = require_errors();
-    var assert = __require("assert");
+    var assert = require("assert");
     var { kHTTP2BuildRequest, kHTTP2CopyHeaders, kHTTP1BuildRequest } = require_symbols();
     var util = require_util();
     var tokenRegExp = /^[\^_`a-zA-Z\-0-9!#$%&'*+.|~]+$/;
@@ -5656,7 +5651,7 @@ var require_request = __commonJS({
     var channels = {};
     var extractBody;
     try {
-      const diagnosticsChannel = __require("diagnostics_channel");
+      const diagnosticsChannel = require("diagnostics_channel");
       channels.create = diagnosticsChannel.channel("undici:request:create");
       channels.bodySent = diagnosticsChannel.channel("undici:request:bodySent");
       channels.headers = diagnosticsChannel.channel("undici:request:headers");
@@ -6012,7 +6007,7 @@ var require_request = __commonJS({
 var require_dispatcher = __commonJS({
   "node_modules/undici/lib/dispatcher.js"(exports2, module2) {
     "use strict";
-    var EventEmitter = __require("events");
+    var EventEmitter = require("events");
     var Dispatcher = class extends EventEmitter {
       dispatch() {
         throw new Error("not implemented");
@@ -6195,8 +6190,8 @@ var require_dispatcher_base = __commonJS({
 var require_connect = __commonJS({
   "node_modules/undici/lib/core/connect.js"(exports2, module2) {
     "use strict";
-    var net = __require("net");
-    var assert = __require("assert");
+    var net = require("net");
+    var assert = require("assert");
     var util = require_util();
     var { InvalidArgumentError, ConnectTimeoutError } = require_errors();
     var tls;
@@ -6261,7 +6256,7 @@ var require_connect = __commonJS({
         let socket;
         if (protocol === "https:") {
           if (!tls) {
-            tls = __require("tls");
+            tls = require("tls");
           }
           servername = servername || options2.servername || util.getServerName(host) || null;
           const sessionKey = servername || hostname;
@@ -6694,9 +6689,9 @@ var require_RedirectHandler = __commonJS({
     "use strict";
     var util = require_util();
     var { kBodyUsed } = require_symbols();
-    var assert = __require("assert");
+    var assert = require("assert");
     var { InvalidArgumentError } = require_errors();
-    var EE = __require("events");
+    var EE = require("events");
     var redirectableStatusCodes = [300, 301, 302, 303, 307, 308];
     var kBody = /* @__PURE__ */ Symbol("body");
     var BodyAsyncIterable = class {
@@ -6880,10 +6875,10 @@ var require_llhttp_simd_wasm = __commonJS({
 var require_client = __commonJS({
   "node_modules/undici/lib/client.js"(exports2, module2) {
     "use strict";
-    var assert = __require("assert");
-    var net = __require("net");
-    var http = __require("http");
-    var { pipeline } = __require("stream");
+    var assert = require("assert");
+    var net = require("net");
+    var http = require("http");
+    var { pipeline } = require("stream");
     var util = require_util();
     var timers = require_timers();
     var Request = require_request();
@@ -6957,7 +6952,7 @@ var require_client = __commonJS({
     } = require_symbols();
     var http2;
     try {
-      http2 = __require("http2");
+      http2 = require("http2");
     } catch {
       http2 = { constants: {} };
     }
@@ -6977,7 +6972,7 @@ var require_client = __commonJS({
     var kClosedResolve = /* @__PURE__ */ Symbol("kClosedResolve");
     var channels = {};
     try {
-      const diagnosticsChannel = __require("diagnostics_channel");
+      const diagnosticsChannel = require("diagnostics_channel");
       channels.sendHeaders = diagnosticsChannel.channel("undici:client:sendHeaders");
       channels.beforeConnect = diagnosticsChannel.channel("undici:client:beforeConnect");
       channels.connectError = diagnosticsChannel.channel("undici:client:connectError");
@@ -9217,8 +9212,8 @@ var require_agent = __commonJS({
 var require_readable = __commonJS({
   "node_modules/undici/lib/api/readable.js"(exports2, module2) {
     "use strict";
-    var assert = __require("assert");
-    var { Readable } = __require("stream");
+    var assert = require("assert");
+    var { Readable } = require("stream");
     var { RequestAbortedError, NotSupportedError, InvalidArgumentError } = require_errors();
     var util = require_util();
     var { ReadableStreamFrom, toUSVString } = require_util();
@@ -9433,7 +9428,7 @@ var require_readable = __commonJS({
           resolve2(dst.buffer);
         } else if (type === "blob") {
           if (!Blob2) {
-            Blob2 = __require("buffer").Blob;
+            Blob2 = require("buffer").Blob;
           }
           resolve2(new Blob2(body, { type: stream[kContentType] }));
         }
@@ -9469,7 +9464,7 @@ var require_readable = __commonJS({
 var require_util3 = __commonJS({
   "node_modules/undici/lib/api/util.js"(exports2, module2) {
     "use strict";
-    var assert = __require("assert");
+    var assert = require("assert");
     var {
       ResponseStatusCodeError
     } = require_errors();
@@ -9570,7 +9565,7 @@ var require_api_request = __commonJS({
     } = require_errors();
     var util = require_util();
     var { getResolveErrorBodyCallback } = require_util3();
-    var { AsyncResource } = __require("async_hooks");
+    var { AsyncResource } = require("async_hooks");
     var { addSignal, removeSignal } = require_abort_signal();
     var RequestHandler = class extends AsyncResource {
       constructor(opts, callback) {
@@ -9717,7 +9712,7 @@ var require_api_request = __commonJS({
 var require_api_stream = __commonJS({
   "node_modules/undici/lib/api/api-stream.js"(exports2, module2) {
     "use strict";
-    var { finished, PassThrough } = __require("stream");
+    var { finished, PassThrough } = require("stream");
     var {
       InvalidArgumentError,
       InvalidReturnValueError,
@@ -9725,7 +9720,7 @@ var require_api_stream = __commonJS({
     } = require_errors();
     var util = require_util();
     var { getResolveErrorBodyCallback } = require_util3();
-    var { AsyncResource } = __require("async_hooks");
+    var { AsyncResource } = require("async_hooks");
     var { addSignal, removeSignal } = require_abort_signal();
     var StreamHandler = class extends AsyncResource {
       constructor(opts, factory, callback) {
@@ -9895,16 +9890,16 @@ var require_api_pipeline = __commonJS({
       Readable,
       Duplex,
       PassThrough
-    } = __require("stream");
+    } = require("stream");
     var {
       InvalidArgumentError,
       InvalidReturnValueError,
       RequestAbortedError
     } = require_errors();
     var util = require_util();
-    var { AsyncResource } = __require("async_hooks");
+    var { AsyncResource } = require("async_hooks");
     var { addSignal, removeSignal } = require_abort_signal();
-    var assert = __require("assert");
+    var assert = require("assert");
     var kResume = /* @__PURE__ */ Symbol("resume");
     var PipelineRequest = class extends Readable {
       constructor() {
@@ -10090,10 +10085,10 @@ var require_api_upgrade = __commonJS({
   "node_modules/undici/lib/api/api-upgrade.js"(exports2, module2) {
     "use strict";
     var { InvalidArgumentError, RequestAbortedError, SocketError } = require_errors();
-    var { AsyncResource } = __require("async_hooks");
+    var { AsyncResource } = require("async_hooks");
     var util = require_util();
     var { addSignal, removeSignal } = require_abort_signal();
-    var assert = __require("assert");
+    var assert = require("assert");
     var UpgradeHandler = class extends AsyncResource {
       constructor(opts, callback) {
         if (!opts || typeof opts !== "object") {
@@ -10179,7 +10174,7 @@ var require_api_upgrade = __commonJS({
 var require_api_connect = __commonJS({
   "node_modules/undici/lib/api/api-connect.js"(exports2, module2) {
     "use strict";
-    var { AsyncResource } = __require("async_hooks");
+    var { AsyncResource } = require("async_hooks");
     var { InvalidArgumentError, RequestAbortedError, SocketError } = require_errors();
     var util = require_util();
     var { addSignal, removeSignal } = require_abort_signal();
@@ -10335,12 +10330,12 @@ var require_mock_utils = __commonJS({
       kGetNetConnect
     } = require_mock_symbols();
     var { buildURL, nop } = require_util();
-    var { STATUS_CODES } = __require("http");
+    var { STATUS_CODES } = require("http");
     var {
       types: {
         isPromise
       }
-    } = __require("util");
+    } = require("util");
     function matchValue(match, value) {
       if (typeof match === "string") {
         return match === value;
@@ -10767,7 +10762,7 @@ var require_mock_interceptor = __commonJS({
 var require_mock_client = __commonJS({
   "node_modules/undici/lib/mock/mock-client.js"(exports2, module2) {
     "use strict";
-    var { promisify } = __require("util");
+    var { promisify } = require("util");
     var Client = require_client();
     var { buildMockDispatch } = require_mock_utils();
     var {
@@ -10820,7 +10815,7 @@ var require_mock_client = __commonJS({
 var require_mock_pool = __commonJS({
   "node_modules/undici/lib/mock/mock-pool.js"(exports2, module2) {
     "use strict";
-    var { promisify } = __require("util");
+    var { promisify } = require("util");
     var Pool = require_pool();
     var { buildMockDispatch } = require_mock_utils();
     var {
@@ -10904,8 +10899,8 @@ var require_pluralizer = __commonJS({
 var require_pending_interceptors_formatter = __commonJS({
   "node_modules/undici/lib/mock/pending-interceptors-formatter.js"(exports2, module2) {
     "use strict";
-    var { Transform } = __require("stream");
-    var { Console } = __require("console");
+    var { Transform } = require("stream");
+    var { Console } = require("console");
     module2.exports = class PendingInterceptorsFormatter {
       constructor({ disableColors } = {}) {
         this.transform = new Transform({
@@ -11083,7 +11078,7 @@ var require_proxy_agent = __commonJS({
   "node_modules/undici/lib/proxy-agent.js"(exports2, module2) {
     "use strict";
     var { kProxy, kClose, kDestroy, kInterceptors } = require_symbols();
-    var { URL: URL2 } = __require("url");
+    var { URL: URL2 } = require("url");
     var Agent = require_agent();
     var Pool = require_pool();
     var DispatcherBase = require_dispatcher_base();
@@ -11234,7 +11229,7 @@ var require_proxy_agent = __commonJS({
 var require_RetryHandler = __commonJS({
   "node_modules/undici/lib/handler/RetryHandler.js"(exports2, module2) {
     "use strict";
-    var assert = __require("assert");
+    var assert = require("assert");
     var { kRetryHandlerDefaultRetry } = require_symbols();
     var { RequestRetryError } = require_errors();
     var { isDisturbed, parseHeaders, parseRangeHeader } = require_util();
@@ -11574,9 +11569,9 @@ var require_headers = __commonJS({
       isValidHeaderName,
       isValidHeaderValue
     } = require_util2();
-    var util = __require("util");
+    var util = require("util");
     var { webidl } = require_webidl();
-    var assert = __require("assert");
+    var assert = require("assert");
     var kHeadersMap = /* @__PURE__ */ Symbol("headers map");
     var kHeadersSortedMap = /* @__PURE__ */ Symbol("headers map sorted");
     function isHTTPWhiteSpaceCharCode(code) {
@@ -11980,9 +11975,9 @@ var require_response = __commonJS({
     var { getGlobalOrigin } = require_global();
     var { URLSerializer } = require_dataURL();
     var { kHeadersList, kConstruct } = require_symbols();
-    var assert = __require("assert");
-    var { types } = __require("util");
-    var ReadableStream = globalThis.ReadableStream || __require("stream/web").ReadableStream;
+    var assert = require("assert");
+    var { types } = require("util");
+    var ReadableStream = globalThis.ReadableStream || require("stream/web").ReadableStream;
     var textEncoder = new TextEncoder("utf-8");
     var Response = class _Response {
       // Creates network error Response.
@@ -12362,8 +12357,8 @@ var require_request2 = __commonJS({
     var { getGlobalOrigin } = require_global();
     var { URLSerializer } = require_dataURL();
     var { kHeadersList, kConstruct } = require_symbols();
-    var assert = __require("assert");
-    var { getMaxListeners, setMaxListeners, getEventListeners, defaultMaxListeners } = __require("events");
+    var assert = require("assert");
+    var { getMaxListeners, setMaxListeners, getEventListeners, defaultMaxListeners } = require("events");
     var TransformStream = globalThis.TransformStream;
     var kAbortController = /* @__PURE__ */ Symbol("abortController");
     var requestFinalizer = new FinalizationRegistry(({ signal, abort }) => {
@@ -12640,7 +12635,7 @@ var require_request2 = __commonJS({
             );
           }
           if (!TransformStream) {
-            TransformStream = __require("stream/web").TransformStream;
+            TransformStream = require("stream/web").TransformStream;
           }
           const identityTransform = new TransformStream();
           inputBody.stream.pipeThrough(identityTransform);
@@ -12983,7 +12978,7 @@ var require_fetch = __commonJS({
     } = require_response();
     var { Headers } = require_headers();
     var { Request, makeRequest } = require_request2();
-    var zlib = __require("zlib");
+    var zlib = require("zlib");
     var {
       bytesMatch,
       makePolicyContainer,
@@ -13015,7 +13010,7 @@ var require_fetch = __commonJS({
       urlHasHttpsScheme
     } = require_util2();
     var { kState, kHeaders, kGuard, kRealm } = require_symbols2();
-    var assert = __require("assert");
+    var assert = require("assert");
     var { safelyExtractBody } = require_body();
     var {
       redirectStatusSet,
@@ -13026,14 +13021,14 @@ var require_fetch = __commonJS({
       DOMException: DOMException2
     } = require_constants2();
     var { kHeadersList } = require_symbols();
-    var EE = __require("events");
-    var { Readable, pipeline } = __require("stream");
+    var EE = require("events");
+    var { Readable, pipeline } = require("stream");
     var { addAbortListener, isErrored, isReadable, nodeMajor, nodeMinor } = require_util();
     var { dataURLProcessor, serializeAMimeType } = require_dataURL();
-    var { TransformStream } = __require("stream/web");
+    var { TransformStream } = require("stream/web");
     var { getGlobalDispatcher } = require_global2();
     var { webidl } = require_webidl();
-    var { STATUS_CODES } = __require("http");
+    var { STATUS_CODES } = require("http");
     var GET_OR_HEAD = ["GET", "HEAD"];
     var resolveObjectURL;
     var ReadableStream = globalThis.ReadableStream;
@@ -13369,7 +13364,7 @@ var require_fetch = __commonJS({
         }
         case "blob:": {
           if (!resolveObjectURL) {
-            resolveObjectURL = __require("buffer").resolveObjectURL;
+            resolveObjectURL = require("buffer").resolveObjectURL;
           }
           const blobURLEntry = requestCurrentURL(request2);
           if (blobURLEntry.search.length !== 0) {
@@ -13784,7 +13779,7 @@ var require_fetch = __commonJS({
         fetchParams.controller.abort(reason);
       };
       if (!ReadableStream) {
-        ReadableStream = __require("stream/web").ReadableStream;
+        ReadableStream = require("stream/web").ReadableStream;
       }
       const stream = new ReadableStream(
         {
@@ -14390,9 +14385,9 @@ var require_util4 = __commonJS({
     var { getEncoding } = require_encoding();
     var { DOMException: DOMException2 } = require_constants2();
     var { serializeAMimeType, parseMIMEType } = require_dataURL();
-    var { types } = __require("util");
-    var { StringDecoder } = __require("string_decoder");
-    var { btoa } = __require("buffer");
+    var { types } = require("util");
+    var { StringDecoder } = require("string_decoder");
+    var { btoa } = require("buffer");
     var staticPropertyDescriptors = {
       enumerable: true,
       writable: false,
@@ -14834,7 +14829,7 @@ var require_symbols4 = __commonJS({
 var require_util5 = __commonJS({
   "node_modules/undici/lib/cache/util.js"(exports2, module2) {
     "use strict";
-    var assert = __require("assert");
+    var assert = require("assert");
     var { URLSerializer } = require_dataURL();
     var { isValidHeaderName } = require_util2();
     function urlEquals(A, B, excludeFragment = false) {
@@ -14877,7 +14872,7 @@ var require_cache = __commonJS({
     var { kState, kHeaders, kGuard, kRealm } = require_symbols2();
     var { fetching } = require_fetch();
     var { urlIsHttpHttpsScheme, createDeferredPromise, readAllBytes } = require_util2();
-    var assert = __require("assert");
+    var assert = require("assert");
     var { getGlobalDispatcher } = require_global2();
     var Cache = class _Cache {
       /**
@@ -15666,7 +15661,7 @@ var require_parse = __commonJS({
     var { maxNameValuePairSize, maxAttributeValueSize } = require_constants4();
     var { isCTLExcludingHtab } = require_util6();
     var { collectASequenceOfCodePointsFast } = require_dataURL();
-    var assert = __require("assert");
+    var assert = require("assert");
     function parseSetCookie(header) {
       if (isCTLExcludingHtab(header)) {
         return null;
@@ -15994,7 +15989,7 @@ var require_events = __commonJS({
     "use strict";
     var { webidl } = require_webidl();
     var { kEnumerableProperty } = require_util();
-    var { MessagePort } = __require("worker_threads");
+    var { MessagePort } = require("worker_threads");
     var MessageEvent = class _MessageEvent extends Event {
       #eventInit;
       constructor(type, eventInitDict = {}) {
@@ -16325,7 +16320,7 @@ var require_util7 = __commonJS({
 var require_connection = __commonJS({
   "node_modules/undici/lib/websocket/connection.js"(exports2, module2) {
     "use strict";
-    var diagnosticsChannel = __require("diagnostics_channel");
+    var diagnosticsChannel = require("diagnostics_channel");
     var { uid, states } = require_constants5();
     var {
       kReadyState,
@@ -16346,7 +16341,7 @@ var require_connection = __commonJS({
     channels.socketError = diagnosticsChannel.channel("undici:websocket:socket_error");
     var crypto2;
     try {
-      crypto2 = __require("crypto");
+      crypto2 = require("crypto");
     } catch {
     }
     function establishWebSocketConnection(url, protocols, ws, onEstablish, options2) {
@@ -16476,7 +16471,7 @@ var require_frame = __commonJS({
     var { maxUnsigned16Bit } = require_constants5();
     var crypto2;
     try {
-      crypto2 = __require("crypto");
+      crypto2 = require("crypto");
     } catch {
     }
     var WebsocketFrameSend = class {
@@ -16530,8 +16525,8 @@ var require_frame = __commonJS({
 var require_receiver = __commonJS({
   "node_modules/undici/lib/websocket/receiver.js"(exports2, module2) {
     "use strict";
-    var { Writable } = __require("stream");
-    var diagnosticsChannel = __require("diagnostics_channel");
+    var { Writable } = require("stream");
+    var diagnosticsChannel = require("diagnostics_channel");
     var { parserStates, opcodes, states, emptyBuffer } = require_constants5();
     var { kReadyState, kSentClose, kResponse, kReceivedClose } = require_symbols5();
     var { isValidStatusCode, failWebsocketConnection, websocketMessageReceived } = require_util7();
@@ -16786,7 +16781,7 @@ var require_websocket = __commonJS({
     var { ByteParser } = require_receiver();
     var { kEnumerableProperty, isBlobLike } = require_util();
     var { getGlobalDispatcher } = require_global2();
-    var { types } = __require("util");
+    var { types } = require("util");
     var experimentalWarned = false;
     var WebSocket = class _WebSocket extends EventTarget {
       #events = {
@@ -17193,7 +17188,7 @@ var require_undici = __commonJS({
     var createRedirectInterceptor = require_redirectInterceptor();
     var hasCrypto;
     try {
-      __require("crypto");
+      require("crypto");
       hasCrypto = true;
     } catch {
       hasCrypto = false;
@@ -17366,8 +17361,8 @@ var require_lib = __commonJS({
     };
     Object.defineProperty(exports2, "__esModule", { value: true });
     exports2.HttpClient = exports2.isHttps = exports2.HttpClientResponse = exports2.HttpClientError = exports2.getProxyUrl = exports2.MediaTypes = exports2.Headers = exports2.HttpCodes = void 0;
-    var http = __importStar(__require("http"));
-    var https = __importStar(__require("https"));
+    var http = __importStar(require("http"));
+    var https = __importStar(require("https"));
     var pm = __importStar(require_proxy());
     var tunnel = __importStar(require_tunnel2());
     var undici_1 = require_undici();
@@ -18160,8 +18155,8 @@ var require_summary = __commonJS({
     };
     Object.defineProperty(exports2, "__esModule", { value: true });
     exports2.summary = exports2.markdownSummary = exports2.SUMMARY_DOCS_URL = exports2.SUMMARY_ENV_VAR = void 0;
-    var os_1 = __require("os");
-    var fs_1 = __require("fs");
+    var os_1 = require("os");
+    var fs_1 = require("fs");
     var { access: access2, appendFile, writeFile: writeFile2 } = fs_1.promises;
     exports2.SUMMARY_ENV_VAR = "GITHUB_STEP_SUMMARY";
     exports2.SUMMARY_DOCS_URL = "https://docs.github.com/actions/using-workflows/workflow-commands-for-github-actions#adding-a-job-summary";
@@ -18454,7 +18449,7 @@ var require_path_utils = __commonJS({
     };
     Object.defineProperty(exports2, "__esModule", { value: true });
     exports2.toPlatformPath = exports2.toWin32Path = exports2.toPosixPath = void 0;
-    var path8 = __importStar(__require("path"));
+    var path8 = __importStar(require("path"));
     function toPosixPath(pth) {
       return pth.replace(/[\\]/g, "/");
     }
@@ -18527,8 +18522,8 @@ var require_io_util = __commonJS({
     var _a;
     Object.defineProperty(exports2, "__esModule", { value: true });
     exports2.getCmdPath = exports2.tryGetExecutablePath = exports2.isRooted = exports2.isDirectory = exports2.exists = exports2.READONLY = exports2.UV_FS_O_EXLOCK = exports2.IS_WINDOWS = exports2.unlink = exports2.symlink = exports2.stat = exports2.rmdir = exports2.rm = exports2.rename = exports2.readlink = exports2.readdir = exports2.open = exports2.mkdir = exports2.lstat = exports2.copyFile = exports2.chmod = void 0;
-    var fs5 = __importStar(__require("fs"));
-    var path8 = __importStar(__require("path"));
+    var fs5 = __importStar(require("fs"));
+    var path8 = __importStar(require("path"));
     _a = fs5.promises, exports2.chmod = _a.chmod, exports2.copyFile = _a.copyFile, exports2.lstat = _a.lstat, exports2.mkdir = _a.mkdir, exports2.open = _a.open, exports2.readdir = _a.readdir, exports2.readlink = _a.readlink, exports2.rename = _a.rename, exports2.rm = _a.rm, exports2.rmdir = _a.rmdir, exports2.stat = _a.stat, exports2.symlink = _a.symlink, exports2.unlink = _a.unlink;
     exports2.IS_WINDOWS = process.platform === "win32";
     exports2.UV_FS_O_EXLOCK = 268435456;
@@ -18699,8 +18694,8 @@ var require_io = __commonJS({
     };
     Object.defineProperty(exports2, "__esModule", { value: true });
     exports2.findInPath = exports2.which = exports2.mkdirP = exports2.rmRF = exports2.mv = exports2.cp = void 0;
-    var assert_1 = __require("assert");
-    var path8 = __importStar(__require("path"));
+    var assert_1 = require("assert");
+    var path8 = __importStar(require("path"));
     var ioUtil = __importStar(require_io_util());
     function cp(source, dest, options2 = {}) {
       return __awaiter(this, void 0, void 0, function* () {
@@ -18947,13 +18942,13 @@ var require_toolrunner = __commonJS({
     };
     Object.defineProperty(exports2, "__esModule", { value: true });
     exports2.argStringToArray = exports2.ToolRunner = void 0;
-    var os = __importStar(__require("os"));
-    var events = __importStar(__require("events"));
-    var child = __importStar(__require("child_process"));
-    var path8 = __importStar(__require("path"));
+    var os = __importStar(require("os"));
+    var events = __importStar(require("events"));
+    var child = __importStar(require("child_process"));
+    var path8 = __importStar(require("path"));
     var io = __importStar(require_io());
     var ioUtil = __importStar(require_io_util());
-    var timers_1 = __require("timers");
+    var timers_1 = require("timers");
     var IS_WINDOWS = process.platform === "win32";
     var ToolRunner = class extends events.EventEmitter {
       constructor(toolPath, args, options2) {
@@ -19431,7 +19426,7 @@ var require_exec = __commonJS({
     };
     Object.defineProperty(exports2, "__esModule", { value: true });
     exports2.getExecOutput = exports2.exec = void 0;
-    var string_decoder_1 = __require("string_decoder");
+    var string_decoder_1 = require("string_decoder");
     var tr = __importStar(require_toolrunner());
     function exec(commandLine, args, options2) {
       return __awaiter(this, void 0, void 0, function* () {
@@ -19545,7 +19540,7 @@ var require_platform = __commonJS({
     };
     Object.defineProperty(exports2, "__esModule", { value: true });
     exports2.getDetails = exports2.isLinux = exports2.isMacOS = exports2.isWindows = exports2.arch = exports2.platform = void 0;
-    var os_1 = __importDefault(__require("os"));
+    var os_1 = __importDefault(require("os"));
     var exec = __importStar(require_exec());
     var getWindowsInfo = () => __awaiter(void 0, void 0, void 0, function* () {
       const { stdout: version } = yield exec.getExecOutput('powershell -command "(Get-CimInstance -ClassName Win32_OperatingSystem).Version"', void 0, {
@@ -19664,8 +19659,8 @@ var require_core = __commonJS({
     var command_1 = require_command();
     var file_command_1 = require_file_command();
     var utils_1 = require_utils();
-    var os = __importStar(__require("os"));
-    var path8 = __importStar(__require("path"));
+    var os = __importStar(require("os"));
+    var path8 = __importStar(require("path"));
     var oidc_utils_1 = require_oidc_utils();
     var ExitCode;
     (function(ExitCode2) {
@@ -19836,8 +19831,8 @@ var require_context = __commonJS({
     "use strict";
     Object.defineProperty(exports2, "__esModule", { value: true });
     exports2.Context = void 0;
-    var fs_1 = __require("fs");
-    var os_1 = __require("os");
+    var fs_1 = require("fs");
+    var os_1 = require("os");
     var Context = class {
       /**
        * Hydrate the context from the environment
@@ -24966,7 +24961,7 @@ var require_binary = __commonJS({
     "use strict";
     var NodeBuffer;
     try {
-      _require = __require;
+      _require = require;
       NodeBuffer = _require("buffer").Buffer;
     } catch (__) {
     }
@@ -25255,7 +25250,7 @@ var require_function = __commonJS({
     "use strict";
     var esprima;
     try {
-      _require = __require;
+      _require = require;
       esprima = _require("esprima");
     } catch (_) {
       if (typeof window !== "undefined") esprima = window.esprima;
@@ -27312,7 +27307,7 @@ var require_parse2 = __commonJS({
 var require_gray_matter = __commonJS({
   "node_modules/gray-matter/index.js"(exports2, module2) {
     "use strict";
-    var fs5 = __require("fs");
+    var fs5 = require("fs");
     var sections = require_section_matter();
     var defaults = require_defaults();
     var stringify = require_stringify();
@@ -27425,20 +27420,25 @@ var require_gray_matter = __commonJS({
 });
 
 // src/index.ts
+var index_exports = {};
+__export(index_exports, {
+  run: () => run
+});
+module.exports = __toCommonJS(index_exports);
 var core7 = __toESM(require_core(), 1);
 var github = __toESM(require_github(), 1);
-import * as fs4 from "fs";
+var fs4 = __toESM(require("fs"), 1);
 
 // src/services/ContentScanner.ts
+var fs2 = __toESM(require("fs/promises"), 1);
+var path3 = __toESM(require("path"), 1);
 var core2 = __toESM(require_core(), 1);
-import * as fs2 from "fs/promises";
-import * as path3 from "path";
 
 // src/services/LocalFileLoader.ts
+var fs = __toESM(require("fs"), 1);
+var path = __toESM(require("path"), 1);
 var import_gray_matter = __toESM(require_gray_matter(), 1);
 var core = __toESM(require_core(), 1);
-import * as fs from "fs";
-import * as path from "path";
 async function loadLocalFile(filePath) {
   try {
     const fullPath = path.resolve(filePath);
@@ -27456,27 +27456,27 @@ async function loadLocalFile(filePath) {
 }
 
 // src/utils/gitMetadata.ts
-import { execSync } from "child_process";
-import * as path2 from "path";
+var import_child_process = require("child_process");
+var path2 = __toESM(require("path"), 1);
 async function getGitFileMetadata(filePath, repoRoot) {
   const relativePath = path2.relative(repoRoot, filePath).replace(/\\/g, "/");
   try {
-    const sha = execSync(
+    const sha = (0, import_child_process.execSync)(
       `git -C "${repoRoot}" rev-parse HEAD:"${relativePath}"`,
       { encoding: "utf-8" }
     ).trim();
     const size = parseInt(
-      execSync(
+      (0, import_child_process.execSync)(
         `git -C "${repoRoot}" cat-file -s "${sha}"`,
         { encoding: "utf-8" }
       ).trim(),
       10
     );
-    const created_at = execSync(
+    const created_at = (0, import_child_process.execSync)(
       `git -C "${repoRoot}" log --follow --format=%aI --reverse "${relativePath}" | head -1`,
       { encoding: "utf-8" }
     ).trim();
-    const updated_at = execSync(
+    const updated_at = (0, import_child_process.execSync)(
       `git -C "${repoRoot}" log -1 --format=%aI "${relativePath}"`,
       { encoding: "utf-8" }
     ).trim();
@@ -27771,7 +27771,7 @@ var ContentPath = class _ContentPath {
 };
 
 // node_modules/ulid/dist/node/index.js
-import crypto from "crypto";
+var import_node_crypto = __toESM(require("crypto"), 1);
 var ENCODING = "0123456789ABCDEFGHJKMNPQRSTVWXYZ";
 var ENCODING_LEN = 32;
 var RANDOM_LEN = 16;
@@ -27803,7 +27803,7 @@ function randomChar(prng) {
 }
 function detectPRNG(root) {
   const rootLookup = detectRoot();
-  const globalCrypto = rootLookup && (rootLookup.crypto || rootLookup.msCrypto) || (typeof crypto !== "undefined" ? crypto : null);
+  const globalCrypto = rootLookup && (rootLookup.crypto || rootLookup.msCrypto) || (typeof import_node_crypto.default !== "undefined" ? import_node_crypto.default : null);
   if (typeof globalCrypto?.getRandomValues === "function") {
     return () => {
       const buffer = new Uint8Array(1);
@@ -27812,8 +27812,8 @@ function detectPRNG(root) {
     };
   } else if (typeof globalCrypto?.randomBytes === "function") {
     return () => globalCrypto.randomBytes(1).readUInt8() / 256;
-  } else if (crypto?.randomBytes) {
-    return () => crypto.randomBytes(1).readUInt8() / 256;
+  } else if (import_node_crypto.default?.randomBytes) {
+    return () => import_node_crypto.default.randomBytes(1).readUInt8() / 256;
   }
   throw new ULIDError(ULIDErrorCode.PRNGDetectFailure, "Failed to find a reliable PRNG");
 }
@@ -28538,10 +28538,10 @@ async function* scanFolders(folderPath, repoRoot, relativePath, isLocaleRoot = f
 
 // src/services/MetadataGeneratorService.ts
 var core3 = __toESM(require_core(), 1);
-import * as path5 from "path";
+var path5 = __toESM(require("path"), 1);
 
 // src/services/DomainServices.ts
-import * as fs3 from "fs/promises";
+var fs3 = __toESM(require("fs/promises"), 1);
 var FractionalIndexSorter = class {
   sort(items) {
     return [...items].sort((a, b) => {
@@ -28584,7 +28584,7 @@ var JsonFileWriter = class {
 };
 
 // src/services/AncestorBuilder.ts
-import * as path4 from "path";
+var path4 = __toESM(require("path"), 1);
 var AncestorBuilder = class {
   constructor(localeBuilder = new LocaleMetadataBuilder(), chapterBuilder = new ChapterMetadataBuilder(), directoryBuilder = new DirectoryMetadataBuilder()) {
     this.localeBuilder = localeBuilder;
@@ -28930,12 +28930,12 @@ async function generateMetadataFiles(scanned, repoRoot) {
 }
 
 // src/utils/gitCommit.ts
+var import_child_process2 = require("child_process");
 var core4 = __toESM(require_core(), 1);
-import { execSync as execSync2 } from "child_process";
 var COMMIT_MESSAGE_PREFIX = "[auto:Amentor GitHub Content Manager Action]";
 function isAutoCommit(repoRoot = process.cwd()) {
   try {
-    const lastMessage = execSync2("git log -1 --pretty=%B", {
+    const lastMessage = (0, import_child_process2.execSync)("git log -1 --pretty=%B", {
       encoding: "utf-8",
       cwd: repoRoot
     }).trim();
@@ -28950,14 +28950,14 @@ async function commitGeneratedFiles(files, repoRoot = process.cwd()) {
     return;
   }
   try {
-    execSync2('git config user.name "github-actions[bot]"', { cwd: repoRoot });
-    execSync2('git config user.email "github-actions[bot]@users.noreply.github.com"', {
+    (0, import_child_process2.execSync)('git config user.name "github-actions[bot]"', { cwd: repoRoot });
+    (0, import_child_process2.execSync)('git config user.email "github-actions[bot]@users.noreply.github.com"', {
       cwd: repoRoot
     });
     for (const file of files) {
-      execSync2(`git add "${file}"`, { cwd: repoRoot });
+      (0, import_child_process2.execSync)(`git add "${file}"`, { cwd: repoRoot });
     }
-    const status = execSync2("git status --porcelain", {
+    const status = (0, import_child_process2.execSync)("git status --porcelain", {
       encoding: "utf-8",
       cwd: repoRoot
     }).trim();
@@ -28969,12 +28969,12 @@ async function commitGeneratedFiles(files, repoRoot = process.cwd()) {
 
 Generated ${files.length} metadata files:
 ${files.map((f) => `- ${f}`).join("\n")}`;
-    execSync2(`git commit -m "${commitMessage.replace(/"/g, '\\"')}"`, {
+    (0, import_child_process2.execSync)(`git commit -m "${commitMessage.replace(/"/g, '\\"')}"`, {
       cwd: repoRoot,
       stdio: "inherit"
     });
     core4.info(`Committed ${files.length} generated files`);
-    execSync2("git push", {
+    (0, import_child_process2.execSync)("git push", {
       cwd: repoRoot,
       stdio: "inherit"
     });
@@ -29515,14 +29515,14 @@ var ValidationPipeline = class {
 };
 
 // src/services/ChangeDetector.ts
+var import_child_process3 = require("child_process");
+var path6 = __toESM(require("path"), 1);
 var core5 = __toESM(require_core(), 1);
-import { execSync as execSync3 } from "child_process";
-import * as path6 from "path";
 async function detectChanges(repoRoot, beforeSha, afterSha) {
   core5.info(`Detecting changes between ${beforeSha} and ${afterSha}`);
   const changes = [];
   try {
-    const diffOutput = execSync3(
+    const diffOutput = (0, import_child_process3.execSync)(
       `git diff --name-status --find-renames ${beforeSha} ${afterSha}`,
       { encoding: "utf8", cwd: repoRoot }
     ).trim();
@@ -29653,7 +29653,7 @@ function createEmptyChangeSet(beforeSha, afterSha) {
 async function getAllMarkdownFiles(repoRoot) {
   core5.info("No before SHA - treating all files as added");
   try {
-    const output = execSync3(
+    const output = (0, import_child_process3.execSync)(
       'git ls-files "*.md"',
       { encoding: "utf8", cwd: repoRoot }
     ).trim();
@@ -29678,8 +29678,8 @@ async function getAllMarkdownFiles(repoRoot) {
 }
 
 // src/services/IncrementalMetadataUpdaterService.ts
+var path7 = __toESM(require("path"), 1);
 var core6 = __toESM(require_core(), 1);
-import * as path7 from "path";
 var UpdateStatistics = class {
   constructor(localesUpdated = 0, foldersUpdated = 0, filesProcessed = 0) {
     this.localesUpdated = localesUpdated;
@@ -29939,6 +29939,7 @@ async function updateMetadataIncrementally(changes, repoRoot) {
 }
 
 // src/index.ts
+var import_meta = {};
 async function run() {
   try {
     const context2 = github.context;
@@ -30127,12 +30128,13 @@ async function run() {
     }
   }
 }
-if (import.meta.url === `file://${process.argv[1]}` || !import.meta.url) {
+if (import_meta.url === `file://${process.argv[1]}` || !import_meta.url) {
   run();
 }
-export {
+// Annotate the CommonJS export names for ESM import in node:
+0 && (module.exports = {
   run
-};
+});
 /*! Bundled license information:
 
 undici/lib/fetch/body.js:
@@ -30157,4 +30159,4 @@ strip-bom-string/index.js:
    * Released under the MIT License.
    *)
 */
-//# sourceMappingURL=index.js.map
+//# sourceMappingURL=index.cjs.map
