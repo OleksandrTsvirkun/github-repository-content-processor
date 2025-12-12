@@ -2,11 +2,12 @@ import * as fs from 'fs';
 import * as path from 'path';
 import matter from 'gray-matter';
 import * as core from '@actions/core';
+import type { FrontMatter } from '../types/frontmatter';
 
 export interface LocalFileInfo {
   path: string;
   content: string;
-  frontmatter: Record<string, any>;
+  frontmatter: FrontMatter;
 }
 
 /**
@@ -39,7 +40,7 @@ export async function* loadLocalFiles(
         yield {
           path: relativePath,
           content: markdown,
-          frontmatter,
+          frontmatter: frontmatter as FrontMatter,
         };
       } catch (error) {
         core.warning(`Failed to read file ${fullPath}: ${error}`);
@@ -86,7 +87,7 @@ export async function loadLocalFile(filePath: string): Promise<LocalFileInfo | n
     return {
       path: filePath,
       content: markdown,
-      frontmatter,
+      frontmatter: frontmatter as FrontMatter,
     };
   } catch (error) {
     core.error(`Failed to read file ${filePath}: ${error}`);

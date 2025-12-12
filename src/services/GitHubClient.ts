@@ -4,11 +4,12 @@ import { RateLimitHandler } from "../utils/RateLimitHandler";
 import { RetryHandler } from "../utils/RetryHandler";
 import { ParallelBatchHandler } from "../utils/ParallelBatchHandler";
 import { decodeBase64 } from "../utils/encoding";
+import type { FrontMatter } from '../types/frontmatter';
 
 export interface FileInfo {
   path: string;
   content: string;
-  frontmatter: Record<string, any>;
+  frontmatter: FrontMatter;
   sha: string;
 }
 
@@ -230,13 +231,15 @@ export class GitHubClient {
       }
 
       throw new Error(`File not found or is not a file: ${path}`);
-    } catch (error: any) {
+    } catch (error: unknown) {
       // Enhanced error messages for specific status codes
-      if (error.status === 404) {
-        throw new Error(`File not found: ${path}`);
-      } else if (error.status === 403) {
-        throw new Error(`Access forbidden to ${path}: ${error.message}`);
-      } else if (error.status === 500 || error.status === 502 || error.status === 503) {
+      if (error instanceof Error && 'status' in error) {
+        const statusError = error as Error & { status: number; message: string };
+        if (statusError.status === 404) {
+          throw new Error(`File not found: ${path}`);
+        } else if (statusError.status === 403) {
+          throw new Error(`Access forbidden to ${path}: ${statusError.message}`);
+        } else if (statusError.status === 500 || statusError.status === 502 || statusError.status === 503) {
         throw new Error(`GitHub server error (${error.status}) for ${path}`);
       }
 
@@ -270,9 +273,10 @@ export class GitHubClient {
       for (const file of data.files || []) {
         yield file.filename;
       }
-    } catch (error: any) {
-      console.error(`Failed to get changed files: ${error.message}`);
-      throw new Error(`Failed to get changed files: ${error.message}`);
+    } catch (error: unknown) {
+      const message = error instanceof Error ? error.message : String(error);
+      console.error(`Failed to get changed files: ${message}`);
+      throw new Error(`Failed to get changed files: ${message}`);
     }
   }
 

@@ -52,11 +52,11 @@ export class RateLimitHandler {
 
     try {
       return await operation();
-    } catch (error: any) {
+    } catch (error: unknown) {
       // If it's a rate limit error, wait and retry once
-      if (this.isRateLimitError(error)) {
+      if (error instanceof Error && this.isRateLimitError(error as Error & { status?: number })) {
         console.warn(`⚠️  Rate limit hit during ${operationName}, waiting...`);
-        await this.handleRateLimitError(error);
+        await this.handleRateLimitError(error as Error & { response?: { headers?: Record<string, string> } });
 
         // Retry once after handling rate limit
         return await operation();

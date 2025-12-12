@@ -57,13 +57,13 @@ export class RetryHandler {
     for (let attempt = 0; attempt <= this._maxRetries; attempt++) {
       try {
         return await operation();
-      } catch (error: any) {
-        lastError = error;
+      } catch (error: unknown) {
+        lastError = error instanceof Error ? error : new Error(String(error));
 
         // Check if it's a rate limit error
-        if (this.rateLimitHandler?.isRateLimitError(error)) {
+        if (error instanceof Error && this.rateLimitHandler?.isRateLimitError(error as Error & { status?: number })) {
           console.warn(`⚠️  Rate limit hit during ${operationName}`);
-          await this.rateLimitHandler.handleRateLimitError(error);
+          await this.rateLimitHandler.handleRateLimitError(error as Error & { response?: { headers?: Record<string, string> } });
           // Don't count rate limit as retry attempt
           attempt--;
           continue;
@@ -72,10 +72,10 @@ export class RetryHandler {
         // If this was the last attempt, throw
         if (attempt === this._maxRetries) {
           console.error(
-            `❌ Failed ${operationName} after ${this._maxRetries} retries: ${error.message}`
+            `❌ Failed ${operationName} after ${this._maxRetries} retries: ${lastError.message}`
           );
           throw new Error(
-            `Failed ${operationName} after ${this._maxRetries} retries: ${error.message}`
+            `Failed ${operationName} after ${this._maxRetries} retries: ${lastError.message}`
           );
         }
 
@@ -84,10 +84,10 @@ export class RetryHandler {
 
         // Log retry attempt
         if (this.onRetry) {
-          this.onRetry(attempt + 1, this._maxRetries, delayMs, error);
+          this.onRetry(attempt + 1, this._maxRetries, delayMs, lastError);
         } else {
           console.warn(
-            `⚠️  Retry ${attempt + 1}/${this._maxRetries} for ${operationName} after ${delayMs}ms (${error.message})`
+            `⚠️  Retry ${attempt + 1}/${this._maxRetries} for ${operationName} after ${delayMs}ms (${lastError.message}`
           );
         }
 

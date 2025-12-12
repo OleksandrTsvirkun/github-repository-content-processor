@@ -88,3 +88,4 @@ export type ShallowIndex = ShallowIndexMap[keyof ShallowIndexMap];
 
 export type Metadata = MetadataMap[keyof MetadataMap];
 export type Parents = ParentMap[keyof ParentMap];
+export type ChildMetadata = ArticleMetadata | ChapterMetadata | DirectoryMetadata;

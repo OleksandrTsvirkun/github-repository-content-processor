@@ -5,6 +5,7 @@ import ChapterElement from "../elements/ChapterElement";
 import DirectoryElement from "../elements/DirectoryElement";
 import ArticleElement from "../elements/ArticleElement";
 import Validator from "../core/Validator";
+import type { FrontMatter } from "../../types/frontmatter";
 
 /**
  * Validates frontmatter metadata in content files.
@@ -31,7 +32,7 @@ export default class FrontmatterValidator extends Validator {
     }
   }
 
-  private *validateLocale(frontmatter: any, path: string[]): Generator<ValidationError> {
+  private *validateLocale(frontmatter: FrontMatter, path: string[]): Generator<ValidationError> {
     // Type must be "locale"
     if (frontmatter.type !== "locale") {
       yield this.createError(
@@ -78,7 +79,7 @@ export default class FrontmatterValidator extends Validator {
     }
   }
 
-  private *validateChapter(frontmatter: any, path: string[]): Generator<ValidationError> {
+  private *validateChapter(frontmatter: FrontMatter, path: string[]): Generator<ValidationError> {
     // Type must be "chapter"
     if (frontmatter.type !== "chapter") {
       yield this.createError(
@@ -107,7 +108,7 @@ export default class FrontmatterValidator extends Validator {
     }
   }
 
-  private *validateDirectory(frontmatter: any, path: string[]): Generator<ValidationError> {
+  private *validateDirectory(frontmatter: FrontMatter, path: string[]): Generator<ValidationError> {
     // Type must be "directory"
     if (frontmatter.type !== "directory") {
       yield this.createError(
@@ -136,7 +137,7 @@ export default class FrontmatterValidator extends Validator {
     }
   }
 
-  private *validateArticle(frontmatter: any, path: string[]): Generator<ValidationError> {
+  private *validateArticle(frontmatter: FrontMatter, path: string[]): Generator<ValidationError> {
     // Type is optional for articles, but if present must be "article"
     if (frontmatter.type && frontmatter.type !== "article") {
       yield this.createError(

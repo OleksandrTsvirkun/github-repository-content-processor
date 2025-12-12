@@ -169,19 +169,23 @@ export async function validateFileContent(
       size: fileInfo.content.length
     };
     
-    // Validate frontmatter has required fields for ArticleFrontMatter
-    const frontmatter = fileInfo.frontmatter as any;
+    // Validate frontmatter has required fields
+    const frontmatter = fileInfo.frontmatter;
     if (!frontmatter.type || !frontmatter.id || !frontmatter.title) {
       throw new Error('Missing required frontmatter fields: type, id, or title');
     }
     
+    // Validate frontmatter is article type
+    if (frontmatter.type !== 'article') {
+      throw new Error(`Expected article frontmatter but got ${frontmatter.type}`);
+    }
+    
     // Create element based on file type
-    // For now, treat all as articles - you can enhance this logic
     const element = new ArticleElement(
       contentPath,
       frontmatter,
       stats,
-      null as any // Parent can be null for standalone validation
+      null // Parent can be null for standalone validation
     );
     
     // Create validation pipeline
