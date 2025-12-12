@@ -11,4 +11,11 @@ export default defineConfig({
   minify: false,
   target: "node20",
   dts: false,
+  noExternal: [
+    '@actions/core',
+    '@actions/github',
+    '@octokit/rest',
+    'gray-matter',
+    'ulid'
+  ],
 });
